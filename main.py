@@ -1,30 +1,41 @@
 from tkinter import *
 from forex_python.converter import CurrencyRates
+from forex_python.bitcoin import BtcConverter
+from tkinter.ttk import Combobox
+from functools import partial
+def currencyButton(currency,labelResult):
+    print(currency,labelResult)
+    # if currency == "2":
+    #     b = BtcConverter()
+    #     b.convert_to_btc(5000, 'THB')
+    # else:
+
+
 def leftClickButton(event):
     labelResult.configure(text=int(textbox_americano.get())*50+(int(textbox_latte.get())*55)+(int(textbox_cappuccino.get())*50))
     if labelResult:
-        labelCurrencyPay = Label(MainWindow,text="Currency for Pay:")
-        labelCurrencyPay.grid(row=5, column=0)
-        labelCurrencyPay = Label(MainWindow, text="1.EUR")
-        labelCurrencyPay.grid(row=6, column=0)
-        labelCurrencyPay = Label(MainWindow, text="2.JPY")
-        labelCurrencyPay.grid(row=7, column=0)
-        labelCurrencyPay = Label(MainWindow, text="3.THB")
-        labelCurrencyPay.grid(row=8, column=0)
-        c = CurrencyRates()
-        result =c.get_rates('USD')
-        print(result)
-        # for key, value in result.items():
-        #     print(key +":", round(value, 2))
-        #     labelCurrencyRates = Label(MainWindow, key +":", round(value, 2))
-        #     labelCurrencyRates.grid(row=6, column=0, padx=20, pady=20, sticky=W)
-        #     labelCurrencyRates = Label(MainWindow, text=str(key) + ": " + str(value))
-    else:
-        print("So Sad !! T_T")
-    print("Bye Bye")
+        label_currency_thai_baht = Label(MainWindow, text="Currencies for pay:")
+        label_currency_thai_baht.grid(row=5, column=0,padx=20,sticky=W)
+
+        label_currency_thai_baht = Label(MainWindow, text="1.Thai Baht")
+        label_currency_thai_baht.grid(row=6, column=0,padx=20, sticky=W)
+
+        label_currency_bitcoins = Label(MainWindow, text="2.Bit Coins")
+        label_currency_bitcoins.grid(row=7, column=0, padx=20, sticky=W)
+
+        label_currency = Label(MainWindow, text="Enter Curency:")
+        label_currency.grid(row=8, column=0, padx=20, pady=20)
+
+        textbox_currency = Entry(MainWindow)
+        textbox_currency.insert(0, "")
+        textbox_currency.grid(row=9, column=1, padx=20)
+        print(labelResult)
+        enterButton = Button(MainWindow, text="Enter")
+        # enterButton.bind('<Button-1>', lambda event: currencyButton(textbox_currency.get(), int(labelResult.get())))  TODO
+        enterButton.grid(row=9, column=2, padx=20, pady=20)
 
 MainWindow = Tk()
-MainWindow.geometry('600x600')
+MainWindow.geometry('800x800')
 MainWindow.title('Coffee Shop')
 MainWindow.option_add("*Font","consolas 14")
 
